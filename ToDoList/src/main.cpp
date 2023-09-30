@@ -2,8 +2,7 @@
 #include <string>
 
 using namespace std;
-/*o [name,
-desc, dc, df, prio, id]*/
+
 void help() {
     cout << "Commandes:\n";
     cout << "./todo <option>\n\n";
