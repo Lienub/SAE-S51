@@ -1,4 +1,5 @@
 #include "../../includes/task.h"
+#include "../../includes/sort.h"
 #include "../../json_helper.h"
 #include <iostream>
 #include <string>
@@ -13,7 +14,7 @@ using namespace std;
  * This function displays the list of tasks and
  * sorts according to the option the user has set
  *
- * @param inputFile The input file
+ * @param ofstream The input file
  * @param typeSort The type of sorting
  */
 void displayTasks(ofstream &inputFile, string typeSort)
@@ -25,6 +26,30 @@ void displayTasks(ofstream &inputFile, string typeSort)
     {
         Task task = JSONHelper::jsonToTask(taskJson);
         tasks.push_back(task);
+    }
+
+    switch (typeSort)
+    {
+    case "id":
+        sortTasksById(tasks);
+        break;
+    case "name":
+        sortByTasksName(tasks);
+        break;
+    case "desc":
+        sortByTasksDescription(tasks);
+        break;
+    case "prio":
+        sortByTasksPriority(tasks);
+        break;
+    case "dc":
+        ortByTasksStartDate(tasks);
+        break;
+    case "df":
+        sortByTasksEndDate(tasks);
+        break;
+    default:
+        break;
     }
 
     for (Task task : tasks)

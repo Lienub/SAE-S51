@@ -9,8 +9,21 @@ using namespace std;
 #include "task.h"
 
 void sortTasksById(vector<Task> &tasks);
+bool sortByTaskId(Task &task1, Task &task2);
+
 void sortTasksByName(vector<Task> &tasks);
 bool sortByTaskName(Task &task1, Task &task2);
-bool sortByTaskId(Task &task1, Task &task2);
+
+void sortByTasksDescription(vector<Task> &tasks);
+bool sortByTaskDescription(Task &task1, Task &task2);
+
+void sortTasksByStartDate(vector<Task> &tasks);
+bool sortTaskByStartDate(Task &task1, Task &task2);
+
+void sortTasksByEndDate(vector<Task> &tasks);
+bool sortTaskByEndDate(Task &task1, Task &task2);
+
+void sortTasksByPriority(vector<Task> &tasks);
+bool sortTaskByPriority(Task &task1, Task &task2);
 
 #endif
