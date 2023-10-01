@@ -7,7 +7,16 @@
 
 using namespace std;
 
-// Define the createTask function
+/**
+ * @brief Create a new task and write it to the output file.
+ *
+ * This function prompts the user to input details for a new task, validates the input,
+ * creates a new Task object, converts it to JSON format using the JSON helper module,
+ * and writes the JSON data to the specified output file.
+ *
+ * @param outputFile The output file to write the new task to.
+ * @return The new task.
+ */
 Task createTask(ofstream& outputFile) {
 
     // Prompt the user for task details
