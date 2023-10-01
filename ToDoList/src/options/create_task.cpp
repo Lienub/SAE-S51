@@ -110,16 +110,13 @@ Task createTask(ofstream& outputFile) {
         break;
     }
 
-    // Create a new Task object
     Task newTask(newId, newName, newDescription, newPriority, newStartDate, newEndDate);
 
-    // Convert the task to JSON using the JSON helper module
     json taskJson = JSONHelper::taskToJson(newTask);
 
-    // Write the JSON data to the output file
     outputFile << taskJson.dump(4) << endl;
 
     cout << "Tâche créée avec succès.\n";
 
-    return newTask; // Return the new task
+    return newTask;
 }
