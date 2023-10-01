@@ -82,7 +82,9 @@ Task createTask(ofstream& outputFile) {
         cout << "Date de début de la tâche : ";
         cin >> newStartDate;
 
-        // Add more validation for date format as needed
+        if (newStartDate.empty()) {
+            newStartDate = "none";
+        }
 
         break;
     }
@@ -92,7 +94,9 @@ Task createTask(ofstream& outputFile) {
         cout << "Date de fin de la tâche : ";
         cin >> newEndDate;
 
-        // Add more validation for date format as needed
+        if (newEndDate.empty()) {
+            newEndDate = "none";
+        }
 
         break;
     }
