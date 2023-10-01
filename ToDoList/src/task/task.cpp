@@ -1,11 +1,11 @@
-#include "../includes/task.h"
+#include "../../includes/task.h"
 
-Task::Task(int id, string name, string description, Priority priority, string creationDate, string endDate){
+Task::Task(int id, string name, string description, Priority priority, string startDate, string endDate){
     this->id = id;
     this->name = name;
     this->description = description;
     this->priority = priority;
-    this->creationDate = creationDate;
+    this->startDate = startDate;
     this->endDate = endDate;
 }
 
@@ -25,8 +25,8 @@ Priority Task::getPriority() {
     return priority;
 }
 
-string Task::getCreationDate() {
-    return creationDate;
+string Task::getStartDate() {
+    return startDate;
 }
 
 string Task::getEndDate() {

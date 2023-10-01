@@ -16,16 +16,16 @@ class Task {
         string name;
         string description;
         Priority priority;
-        string creationDate;
+        string startDate;
         string endDate;
 
     public:
-        Task(int id, string name, string description, Priority priority, string creationDate, string endDate);
+        Task(int id, string name, string description, Priority priority, string startDate, string endDate);
         int getId();
         string getName();
         string getDescription();
         Priority getPriority();
-        string getCreationDate();
+        string getStartDate();
         string getEndDate();
 };
 
