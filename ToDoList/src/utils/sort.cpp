@@ -143,14 +143,21 @@ bool sortTasksByEndDate(Task &task1, Task &task2)
  */
 void sortTasksByPriority(vector<Task> &tasks)
 {
-    sort(tasks.begin(), tasks.end(), sortByTaskName);
-    
+    sort(tasks.begin(), tasks.end(), sortByTaskPriority);
 }
 
 /**
- * @todo
+ * @brief Sorts the tasks by end priority High to Low
+ * 
+ * @param task1 first task
+ * @param task2 second task
+ * 
+ * @return true if prioity of task1 is more important than task2
+ * @return false if prioity of task2 is more important than task1
  */
 bool sortByTaskPriority(Task &task1, Task &task2)
 {
- 
+    int prioityTask1 = (task1.getPriority() == Priority.HIGH) ? 1 : (task1.getPriority() == Priority.MEDIUM) ? 2 : 3;
+    int prioityTask2 =  (task2.getPriority() == Priority.HIGH) ? 1 : (task2.getPriority() == Priority.MEDIUM) ? 2 : 3;;
+    return prioityTask1 <= prioityTask2;
 }
