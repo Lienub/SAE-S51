@@ -64,7 +64,7 @@ bool sortByTaskName(Task &task1, Task &task2)
  */
 void sortTasksByDescription(vector<Task> &tasks)
 {
-    sort(tasks.begin(), tasks.end(), sortByTaskName);
+    sort(tasks.begin(), tasks.end(), sortTaskByDescription);
 }
 
 /**
@@ -91,7 +91,7 @@ bool sortTaskByDescription(Task &task1, Task &task2)
 void sortTasksByStartDate(vector<Task> &tasks)
 {
     // Sort by name here
-    sort(tasks.begin(), tasks.end(), sortByTaskStartDate);
+    sort(tasks.begin(), tasks.end(), sortTaskByStartDate);
 }
 
 /**
@@ -103,7 +103,7 @@ void sortTasksByStartDate(vector<Task> &tasks)
  * @return true if start date of task1 is lower than start date of task2
  * @return false if start date of task 1 is greater than start date of task 2
  */
-bool sortByTaskStartDate(Task &task1, Task &task2)
+bool sortTaskByStartDate(Task &task1, Task &task2)
 {
     return task1.getStartDate() <= task2.getStartDate();
 }
@@ -144,7 +144,7 @@ bool sortTasksByEndDate(Task &task1, Task &task2)
  */
 void sortTasksByPriority(vector<Task> &tasks)
 {
-    sort(tasks.begin(), tasks.end(), sortByTaskPriority);
+    sort(tasks.begin(), tasks.end(), sortTaskByPriority);
 }
 
 /**
@@ -156,7 +156,7 @@ void sortTasksByPriority(vector<Task> &tasks)
  * @return true if prioity of task1 is more important than task2
  * @return false if prioity of task2 is more important than task1
  */
-bool sortByTaskPriority(Task &task1, Task &task2)
+bool sortTaskByPriority(Task &task1, Task &task2)
 {
     int prioityTask1 = (task1.getPriority() == Priority::HIGH) ? 1 : (task1.getPriority() == Priority::MEDIUM) ? 2 : 3;
     int prioityTask2 =  (task2.getPriority() == Priority::HIGH) ? 1 : (task2.getPriority() == Priority::MEDIUM) ? 2 : 3;;

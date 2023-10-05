@@ -1,6 +1,6 @@
+#include "../../includes/todo.h"
 #include "../../includes/task.h"
 #include "../../includes/sort.h"
-#include "../../includes/json_helper.h"
 
 using namespace std;
 
@@ -13,14 +13,15 @@ using namespace std;
  * @param ofstream The input file
  * @param typeSort The type of sorting
  */
-void displayTasks(ofstream &inputFile, string typeSort)
+void displayTasks(ifstream &file, string typeSort)
 {
 
     json taskJson;
     vector<Task> tasks;
-    while (inputFile >> taskJson)
+    json data = json::parse(file);
+    for(json& jsonTask : data)
     {
-        Task task = JSONHelper::jsonToTask(taskJson);
+        Task task = JSONHelper::jsonToTask(jsonTask);
         tasks.push_back(task);
     }
     if(typeSort == "id") {
@@ -28,14 +29,14 @@ void displayTasks(ofstream &inputFile, string typeSort)
     } else if (typeSort == "name") {
         sortTasksByName(tasks);
     } else if (typeSort == "desc") {
-        sortByTasksDescription(tasks);
+        sortTasksByDescription(tasks);
     } else if (typeSort == "prio") {
         sortTasksByPriority(tasks);
     } else if (typeSort == "dc") {
         sortTasksByStartDate(tasks);
     } else if (typeSort == "df") {
         sortTasksByEndDate(tasks);
-    }
+    } 
 
     for (Task task : tasks)
     {
@@ -58,7 +59,7 @@ void displayTasks(ofstream &inputFile, string typeSort)
  * @param inputFile The input file
  * @param id The id of the task
  */
-void displayTask(ofstream &inputFile, int id)
+/*void displayTask(ofstream &inputFile, int id)
 {
     json taskJson;
     while (inputFile >> taskJson)
@@ -76,4 +77,4 @@ void displayTask(ofstream &inputFile, int id)
             cout << "------------------------\n";
         }
     }
-}
+}*/

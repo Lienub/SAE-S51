@@ -14,8 +14,8 @@ bool sortByTaskId(Task &task1, Task &task2);
 void sortTasksByName(vector<Task> &tasks);
 bool sortByTaskName(Task &task1, Task &task2);
 
-void sortByTasksDescription(vector<Task> &tasks);
-bool sortByTaskDescription(Task &task1, Task &task2);
+void sortTasksByDescription(vector<Task> &tasks);
+bool sortTaskByDescription(Task &task1, Task &task2);
 
 void sortTasksByStartDate(vector<Task> &tasks);
 bool sortTaskByStartDate(Task &task1, Task &task2);
