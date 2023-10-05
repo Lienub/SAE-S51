@@ -1,10 +1,6 @@
 #include "../../includes/task.h"
 #include "../../includes/sort.h"
-#include "../../json_helper.h"
-#include <iostream>
-#include <string>
-#include <limits>
-#include <fstream>
+#include "../../includes/json_helper.h"
 
 using namespace std;
 
@@ -27,29 +23,18 @@ void displayTasks(ofstream &inputFile, string typeSort)
         Task task = JSONHelper::jsonToTask(taskJson);
         tasks.push_back(task);
     }
-
-    switch (typeSort)
-    {
-    case "id":
+    if(typeSort == "id") {
         sortTasksById(tasks);
-        break;
-    case "name":
-        sortByTasksName(tasks);
-        break;
-    case "desc":
+    } else if (typeSort == "name") {
+        sortTasksByName(tasks);
+    } else if (typeSort == "desc") {
         sortByTasksDescription(tasks);
-        break;
-    case "prio":
-        sortByTasksPriority(tasks);
-        break;
-    case "dc":
-        ortByTasksStartDate(tasks);
-        break;
-    case "df":
-        sortByTasksEndDate(tasks);
-        break;
-    default:
-        break;
+    } else if (typeSort == "prio") {
+        sortTasksByPriority(tasks);
+    } else if (typeSort == "dc") {
+        sortTasksByStartDate(tasks);
+    } else if (typeSort == "df") {
+        sortTasksByEndDate(tasks);
     }
 
     for (Task task : tasks)
