@@ -9,6 +9,7 @@ using json = nlohmann::json;
 namespace JSONHelper {
 
     json taskToJson(const Task& task);
+    Task jsonToTask(json taskJson);
 
 }
 
