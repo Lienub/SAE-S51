@@ -11,5 +11,5 @@
 
 
 void displayTasks(ifstream &file, string typeSort);
-
+void displayTask(ifstream &inputFile, int id);
 #endif

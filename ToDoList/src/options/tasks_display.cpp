@@ -10,7 +10,7 @@ using namespace std;
  * This function displays the list of tasks and
  * sorts according to the option the user has set
  *
- * @param ofstream The input file
+ * @param ifstream The input file
  * @param typeSort The type of sorting
  */
 void displayTasks(ifstream &file, string typeSort)
@@ -59,14 +59,16 @@ void displayTasks(ifstream &file, string typeSort)
  * @param inputFile The input file
  * @param id The id of the task
  */
-/*void displayTask(ofstream &inputFile, int id)
+void displayTask(ifstream &inputFile, int id)
 {
-    json taskJson;
-    while (inputFile >> taskJson)
+    json data = json::parse(inputFile);
+    bool found = false;
+    for(json& jsonTask : data)
     {
-        Task task = JSONHelper::jsonToTask(taskJson);
+        Task task = JSONHelper::jsonToTask(jsonTask);
         if (task.getId() == id)
         {
+            found = true;
             string priority = task.getPriority() == Priority::HIGH ? "HIGH" : (task.getPriority() == Priority::MEDIUM ? "MEDIUM" : "LOW");
             cout << "ID : " << task.getId() << "\n";
             cout << "Nom : " << task.getName() << "\n";
@@ -75,6 +77,11 @@ void displayTasks(ifstream &file, string typeSort)
             cout << "Date de début : " << task.getStartDate() << "\n";
             cout << "Date de fin : " << task.getEndDate() << "\n";
             cout << "------------------------\n";
+            break;
         }
     }
-}*/
+    if (!found)
+    {
+        cout << "Task not found\n";
+    }
+}
