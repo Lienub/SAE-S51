@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #define CATCH_CONFIG_COLOUR_NONE
 #include "../catch2/catch.hpp"
-#include "../../includes/todo.h"
+#include "../../includes/sort.h"
 #include "../../includes/task.h"
 
 TEST_CASE("Sorting tasks by ID", "[sortTasksById]") {
