@@ -5,6 +5,7 @@ before_script:
 stages:
   - build
   - test
+  - doxygen
   - deploy
 
 build:
@@ -38,6 +39,14 @@ leak-test:
   artifacts:
     paths:
       [ToDoList/log]
+
+generate-doxygen:
+  stage: doxygen
+  trigger:
+    include: "pipelines/doxygen-ci.yml"
+  only:
+    - master
+
 
 deploy-job: 
   stage: deploy
