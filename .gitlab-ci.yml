@@ -1,0 +1,11 @@
+image: gcc:latest
+
+stages:
+  - Doxygen
+ 
+generateDocumentation:
+  stage: Doxygen
+  trigger:
+    include: "ToDoList/pipelines/doxygen-ci.yml"
+  only:
+    - master

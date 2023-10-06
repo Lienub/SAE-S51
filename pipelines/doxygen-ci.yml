@@ -1,0 +1,17 @@
+image: gcc:latest
+
+stages:
+  - generate_doxygen
+
+variables:
+  DOXYGEN_DIR: "docs"
+
+generate_doxygen:
+  stage: generate_doxygen
+  script:
+    - apt-get update -qy
+    - apt-get install -y doxygen
+    - doxygen Doxyfile
+  artifacts:
+    paths:
+      - $DOXYGEN_DIR
