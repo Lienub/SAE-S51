@@ -1,4 +1,5 @@
-#include "../../includes/task.h"
+#include "catch2/catch.hpp"
+#include "../includes/task.h"
 #include <cassert>
 
 int main() {

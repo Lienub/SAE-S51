@@ -6,6 +6,7 @@ using namespace std;
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <vector>
 #include "task.h"
 
 void sortTasksById(vector<Task> &tasks);

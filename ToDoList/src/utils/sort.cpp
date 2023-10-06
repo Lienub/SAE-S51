@@ -117,8 +117,7 @@ bool sortTaskByStartDate(Task &task1, Task &task2)
  */
 void sortTasksByEndDate(vector<Task> &tasks)
 {
-    sort(tasks.begin(), tasks.end(), sortByTaskName);
-    
+    sort(tasks.begin(), tasks.end(), sortTaskByEndDate);
 }
 
 /**
@@ -130,7 +129,7 @@ void sortTasksByEndDate(vector<Task> &tasks)
  * @return true if end date of task1 is lower than end date of task2
  * @return false if end date of task 1 is greater than end date of task 2
  */
-bool sortTasksByEndDate(Task &task1, Task &task2)
+bool sortTaskByEndDate(Task &task1, Task &task2)
 {
     return task1.getEndDate() <= task2.getEndDate();
 }
