@@ -1,11 +1,12 @@
 CC = g++
 CFLAGS = -std=c++17 -Wall
-SRCDIR = src
-INCDIR = includes
-BUILDDIR = build
+SRCDIR = ToDoList/src
+INCDIR = ToDoList/includes
+BUILDDIR = ToDoList/build
+TESTSDIR = ToDoList/tests
 
 all: todo
-	cd $(BUILDDIR) && cmake .. && make
+	cd $(BUILDDIR) && cmake ../tests && make
 
 $(BUILDDIR)/task.o: $(SRCDIR)/task/task.cpp $(INCDIR)/task.h
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
@@ -17,12 +18,11 @@ todo: $(BUILDDIR)/main.o $(BUILDDIR)/task.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 test:
-	cd $(BUILDDIR) && ctest > ../tests/logs/tests.log
+	cd ToDoList/tests/bin && ./delete_task_test --success > ../../../tests_logs/task_delete_test.log
 
 clean:
 	rm -f $(BUILDDIR)/*.o todo
 	rm -rf CMakeFiles/
 	rm -rf $(BUILDDIR)/*
-	rm -f tests/logs/*.log
-
-
+	rm -f tests_logs/*.log
+	rm -rf $(TESTSDIR)/bin/*
