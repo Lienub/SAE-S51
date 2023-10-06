@@ -1,4 +1,4 @@
-image: ubuntu:latest
+image: gcc:latest
 
 stages:
   - build
@@ -9,6 +9,7 @@ build:
   stage: build
   script:
     - echo "Compiling the code..."
+    - cd ToDoList
     - make
     - echo "Compile complete."
   artifacts:
