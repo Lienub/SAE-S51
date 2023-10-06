@@ -1,0 +1,40 @@
+image: ubuntu:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - echo "Compiling the code..."
+    - make
+    - echo "Compile complete."
+  artifacts:
+    paths:
+      [todo]
+
+execute:
+  stage: test
+  script:
+    - echo "Executing todo..." 
+    - ./todo
+    - echo "Code successfully executed..."
+
+leak-test:
+  stage: test
+  script:
+    - apt-get update -y
+    - apt-get install valgrind -y
+    - valgrind --leak-check=yes --error-exitcode=1 --log-file="log" ./todo
+  artifacts:
+    paths:
+      [log]
+
+deploy-job: 
+  stage: deploy
+  environment: production
+  script:
+    - echo "Deploying application..."
+    - echo "Application successfully deployed."
