@@ -5,6 +5,12 @@ using json = nlohmann::json;
 namespace JSONHelper
 {
 
+    void addJsonToFile(json taskJson) {
+        std::ofstream file("../../data/tasks.json");
+
+        file << taskJson;
+    }
+
     json taskToJson(const Task &task)
     {
         json taskJson;
