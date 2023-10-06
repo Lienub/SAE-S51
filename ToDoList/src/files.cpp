@@ -19,7 +19,7 @@ string loadFilename(string filenameLoadFiles, string type)
         if (line.substr(0, line.find('|')) == type)
         {
             fileLoad.close();
-            filename = line.substr(line.find('|'), line.length());
+            filename = line.substr(line.find('|') + 1, line.length());
         }
     }
     fileLoad.close();
