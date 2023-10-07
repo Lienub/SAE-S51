@@ -25,7 +25,10 @@ pages:
     - mkdir .public
     - cp -r * .public
     - mv .public public
-    - mv tests_logs/*log public
+    - ls
+    - mv tests_logs/*.log public
+    - ls
+    - ls public
   artifacts:
     paths:
       - public
