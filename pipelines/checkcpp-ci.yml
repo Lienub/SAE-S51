@@ -17,9 +17,12 @@ analyze-code:
   script:
     - apt-get update --yes
     - apt-get install cppcheck
-    - echo "Checking code style..."
+    - echo "Starting the analysis code..."
     - cppcheck --enable=all . > checkcpp-reports/checkcpp-report.log
+    - echo "checkcpp-report.log file generated"
     - cppcheck --enable=all --xml --xml-version=2 . 2> checkcpp-reports/checkcpp-errors-report.xml || true
+    - echo "checkcpp-errors-report.xml file generated"
+    - echo "End of the analysis code."
   artifacts:
     paths:
       - "checkcpp-reports"

@@ -3,7 +3,6 @@ image: gcc:latest
 stages:
   - build
   - test
-  - doxygen
   - deploy
 
 build:
@@ -42,14 +41,16 @@ build-unit-tests:
   stage: test
   trigger:
     include: "pipelines/tests-ci.yml"
-  
+
+analyze-code:
+  stage: test
+  trigger:
+    include: "pipelines/checkcpp-ci.yml"
+
 generate-doxygen:
-  stage: doxygen
+  stage: deploy
   trigger:
     include: "pipelines/doxygen-ci.yml"
-  only:
-    - master
-
 
 deploy-job: 
   stage: deploy
