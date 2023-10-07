@@ -37,6 +37,13 @@ test:
 	cd ToDoList/tests/bin && ./delete_task_test --success > ../../../tests_logs/delete_task_test.log
 	cd ToDoList/tests/bin && ./load_files_test --success > ../../../tests_logs/load_files_test.log
 
+documentation:
+	doxygen Doxyfile
+
+check-code:
+	- cppcheck --enable=all . > checkcpp-reports/checkcpp-report.log
+	- cppcheck --enable=all --xml --xml-version=2 . 2> checkcpp-reports/checkcpp-errors-report.xml || true
+
 clean:
 	rm -f $(BUILDDIR)/*.o todo
 	rm -rf CMakeFiles/
