@@ -2,8 +2,11 @@
 #include <string>
 #include "../includes/task.h"
 #include "../includes/todo.h"
+#include "../includes/files.h"
 
 using namespace std;
+
+string loadFilenames = "ToDoList/data/load_files.txt";
 
 void help()
 {
@@ -37,9 +40,11 @@ int main(int argc, char *argv[])
         if (argc == 2)
         {
             cout << "\n=================================================\n";
-            cout << "========== Affiche la liste des taches" << " ==========\n";
+            cout << "========== Affiche la liste des taches"
+                 << " ==========\n";
             cout << "=================================================\n\n";
-            ifstream f("ToDoList/data/tasks.json");
+            string filename = loadFilename(loadFilenames, "in");
+            ifstream f(filename);
             displayTasks(f, "");
         }
         else
@@ -49,15 +54,18 @@ int main(int argc, char *argv[])
                 string input = argv[2];
                 try
                 {
-                    ifstream f("ToDoList/data/tasks.json");
+                    string filename = loadFilename(loadFilenames, "in");
+                    ifstream f(filename);
                     displayTask(f, stoi(argv[2]));
                 }
                 catch (const std::invalid_argument &e)
                 {
                     cout << "\n=================================================\n";
-                    cout << "========== Affiche la liste des taches" << " ==========\n";
+                    cout << "========== Affiche la liste des taches"
+                         << " ==========\n";
                     cout << "=================================================\n\n";
-                    ifstream f("ToDoList/data/tasks.json");
+                    string filename = loadFilename(loadFilenames, "in");
+                    ifstream f(filename);
                     displayTasks(f, "");
                 }
             }
@@ -68,14 +76,14 @@ int main(int argc, char *argv[])
                     cout << "\n===============================================================\n";
                     cout << "========== Affiche la liste des taches trié par " << argv[3] << " ==========\n";
                     cout << "===============================================================\n\n";
-                    ifstream f("ToDoList/data/tasks.json");
+                    string filename = loadFilename(loadFilenames, "in");
+                    ifstream f(filename);
                     displayTasks(f, argv[3]);
                 }
             }
             else
             {
                 help();
-                return 0;
             }
         }
     }
@@ -86,30 +94,61 @@ int main(int argc, char *argv[])
     }
     else if (string(argv[1]) == "-d")
     {
-        if(argc == 3) {
-            ifstream inputFile("ToDoList/data/tasks.json");
+        if (argc == 3)
+        {
+            string filename = loadFilename(loadFilenames, "in");
+            ifstream inputFile(filename);
             json contentJson = deleteTask(inputFile, stoi(argv[2]));
-            ofstream outputFile("ToDoList/data/tasks.json");
+
+            filename = loadFilename(loadFilenames, "out");
+            ofstream outputFile(filename);
             outputFile << contentJson.dump(4);
             outputFile.close();
-        } else {
+        }
+        else
+        {
             help();
         }
     }
     else if (string(argv[1]) == "-l")
     {
-        cout << "Rensigner le fichier qu'on veut charger, consulter ou modifier\n";
-        // TODO
+        if (argc == 3)
+        {
+            if (saveFilenameLoaded(argv[2], loadFilenames, "in"))
+            {
+                cout << "Fichier " << argv[2] << " chargé avec succès\n";
+            }
+            else
+            {
+                cout << "Erreur lors de la sauvegarde du fichier " << argv[2] << "\n";
+            }
+        }
+        else
+        {
+            help();
+        }
     }
     else if (string(argv[1]) == "-s")
     {
-        cout << "Renseigner le fichier sur lequel sauvegarder la liste des tâches après modifications\n";
-        // TODO
+        if (argc == 3)
+        {
+            if (saveFilenameLoaded(argv[2], loadFilenames, "out"))
+            {
+                cout << "Fichier " << argv[2] << " chargé avec succès\n";
+            }
+            else
+            {
+                cout << "Erreur lors de la sauvegarde du fichier " << argv[2] << "\n";
+            }
+        }
+        else
+        {
+            help();
+        }
     }
     else
     {
         help();
-        return 0;
     }
 
     return 0;
