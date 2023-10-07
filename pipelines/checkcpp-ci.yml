@@ -16,7 +16,7 @@ analyze-code:
   stage: checkcpp
   script:
     - apt-get update --yes
-    - apt-get install cppcheck
+    - apt-get install --yes cppcheck
     - echo "Starting the analysis code..."
     - cppcheck --enable=all . > checkcpp-reports/checkcpp-report.log
     - echo "checkcpp-report.log file generated"
