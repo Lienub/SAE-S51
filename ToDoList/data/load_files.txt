@@ -1,2 +1,2 @@
-in|data/tasks.json
-out|data/tasks.json
+in|ToDoList/data/input_default_tasks.json
+out|ToDoList/data/output_default_tasks.json

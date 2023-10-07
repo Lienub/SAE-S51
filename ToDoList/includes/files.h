@@ -5,6 +5,7 @@ using namespace std;
 
 #include <string>
 #include <iostream>
+#include <fstream>
 
 /**
  * @brief save loaded file based on file type
