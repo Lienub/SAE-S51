@@ -6,12 +6,15 @@ BUILDDIR = ToDoList/build
 TESTSDIR = ToDoList/tests
 
 all: todo
-	cd $(BUILDDIR) && cmake ../tests && make
+# cd $(BUILDDIR) && cmake ../tests && make
 
 $(BUILDDIR)/task.o: $(SRCDIR)/task/task.cpp $(INCDIR)/task.h
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
 
 $(BUILDDIR)/tasks_display.o: $(SRCDIR)/options/tasks_display.cpp $(INCDIR)/sort.h
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
+
+$(BUILDDIR)/delete_task.o: $(SRCDIR)/options/delete_task.cpp $(INCDIR)/todo.h
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
 
 $(BUILDDIR)/json_helper.o: $(SRCDIR)/helper/json_helper.cpp $(INCDIR)/json_helper.h $(INCDIR)/nlohmann/json.hpp
@@ -23,11 +26,12 @@ $(BUILDDIR)/sort.o: $(SRCDIR)/utils/sort.cpp $(INCDIR)/sort.h
 $(BUILDDIR)/main.o: $(SRCDIR)/main.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
 	
-todo: $(BUILDDIR)/main.o $(BUILDDIR)/task.o $(BUILDDIR)/tasks_display.o $(BUILDDIR)/sort.o $(BUILDDIR)/json_helper.o
+todo: $(BUILDDIR)/main.o $(BUILDDIR)/task.o $(BUILDDIR)/tasks_display.o $(BUILDDIR)/sort.o $(BUILDDIR)/json_helper.o $(BUILDDIR)/delete_task.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 test:
 	cd ToDoList/tests/bin && ./sort_tasks_test --success > ../../../tests_logs/sort_tasks_test.log
+	cd ToDoList/tests/bin && ./delete_task_test --success > ../../../tests_logs/delete_task_test.log
 
 clean:
 	rm -f $(BUILDDIR)/*.o todo

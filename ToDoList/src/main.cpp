@@ -86,7 +86,15 @@ int main(int argc, char *argv[])
     }
     else if (string(argv[1]) == "-d")
     {
-        // TODO
+        if(argc == 3) {
+            ifstream inputFile("ToDoList/data/tasks.json");
+            json contentJson = deleteTask(inputFile, stoi(argv[2]));
+            ofstream outputFile("ToDoList/data/tasks.json");
+            outputFile << contentJson.dump(4);
+            outputFile.close();
+        } else {
+            help();
+        }
     }
     else if (string(argv[1]) == "-l")
     {

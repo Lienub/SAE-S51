@@ -34,7 +34,6 @@ TEST_CASE("Delete task from JSON file", "[deleteTask]")
             "end_date": "2020-01-02"
         }
     ])"_json;
-
     ofstream oFile("../data/tasks_test.json");
     oFile << jsonContent.dump(4);
     oFile.close();

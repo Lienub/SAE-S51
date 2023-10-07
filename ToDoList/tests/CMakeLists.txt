@@ -9,11 +9,14 @@ include_directories(${CATCH_INCLUDE_DIR})
 # Liste des fichiers source de test
 set(TEST_FILES
     todo/sort_tasks_test.cpp
+    todo/delete_task_test.cpp
 )
+
 
 set(SOURCE_FILES
     ../src/utils/sort.cpp
     ../src/task/task.cpp
+    ../src/options/delete_task.cpp
 )
 
 foreach(TEST_FILE ${TEST_FILES})
