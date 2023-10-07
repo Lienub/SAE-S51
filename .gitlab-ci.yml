@@ -17,7 +17,8 @@ build:
     - echo "Compile complete."
   artifacts:
     paths:
-      [todo]
+      - todo
+      - ToDoList/build
 
 execute:
   stage: test
@@ -42,6 +43,20 @@ build-unit-tests:
   stage: test
   trigger:
     include: "pipelines/tests-ci.yml"
+
+lint-test:
+  stage: test
+  needs:
+    - job: build
+      artifacts: true
+  only:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /fix/i
+      - $CI_COMMIT_REF_NAME =~ /features/i
+  trigger:
+    include: "pipelines/lint-ci.yml" 
+    strategy: depend
+
   
 generate-doxygen:
   stage: doxygen
