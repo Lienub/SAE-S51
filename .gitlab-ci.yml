@@ -38,6 +38,11 @@ leak-test:
     paths:
       [log]
 
+build-unit-tests:
+  stage: test
+  trigger:
+    include: "pipelines/tests-ci.yml"
+  
 generate-doxygen:
   stage: doxygen
   trigger:

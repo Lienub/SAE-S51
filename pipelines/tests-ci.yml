@@ -1,0 +1,19 @@
+image: gcc:latest
+
+stages:
+  - build
+
+build-unit-tests:
+  stage: build
+  script:
+    - echo "Installing cmake..."
+    - apt-get update --yes
+    - apt-get install --yes cmake
+    - echo "Compiling the code..."
+    - make
+    - echo "Running the tests..."
+    - make test
+    - echo "The tests passed !"
+  artifacts:
+    paths:
+      - tests_logs/
