@@ -38,7 +38,7 @@
         const table = document.getElementById('testResults');
         i = 0;
         logFiles.forEach(fileName => {
-            fetch(`/${fileName}`)
+            fetch(`sae-s51/${fileName}`)
                 .then(response => response.text())
                 .then(content => {
                     const result = content.includes('All tests passed') ? 'PASSED' : 'FAILED';
