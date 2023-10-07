@@ -8,6 +8,7 @@ include_directories(${CATCH_INCLUDE_DIR})
 
 # Liste des fichiers source de test
 set(TEST_FILES
+    task/task_content_test.cpp
     todo/sort_tasks_test.cpp
     todo/delete_task_test.cpp
     utils/load_files_test.cpp

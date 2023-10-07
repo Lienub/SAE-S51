@@ -4,7 +4,7 @@
 #include <sstream>
 #include <fstream>
 
-TEST_CASE("Test Task Body", "[deleteTask]")
+TEST_CASE("Test Task Body", "[task]")
 {
     Task task(123, "Faire les courses", "Acheter des fruits", Priority::MEDIUM, "2023-10-01", "2023-10-02");
 

@@ -33,6 +33,7 @@ todo: $(BUILDDIR)/main.o $(BUILDDIR)/task.o $(BUILDDIR)/tasks_display.o $(BUILDD
 	$(CC) $(CFLAGS) $^ -o $@
 
 test:
+	cd ToDoList/tests/bin && ./task_content_test --success > ../../../tests_logs/task_content_test.log
 	cd ToDoList/tests/bin && ./sort_tasks_test --success > ../../../tests_logs/sort_tasks_test.log
 	cd ToDoList/tests/bin && ./delete_task_test --success > ../../../tests_logs/delete_task_test.log
 	cd ToDoList/tests/bin && ./load_files_test --success > ../../../tests_logs/load_files_test.log
