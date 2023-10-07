@@ -5,7 +5,7 @@ using json = nlohmann::json;
 namespace JSONHelper
 {
 
-    json taskToJson(const Task &task)
+    json taskToJson(Task &task)
     {
         json taskJson;
         taskJson["id"] = task.getId();
