@@ -1,14 +1,14 @@
 [
     {
-        "description": "dormir",
+        "description": "faire les courses",
         "end_date": "2020-01-02",
         "id": 1,
-        "name": "Dormir",
+        "name": "Courses",
         "priority": "HIGH",
         "start_date": "2020-01-01"
     },
     {
-        "description": "faire le projet S51",
+        "description": "Faire S51",
         "end_date": "2020-01-02",
         "id": 2,
         "name": "Devoirs",
@@ -16,10 +16,10 @@
         "start_date": "2020-01-01"
     },
     {
-        "description": "faire les courses",
+        "description": "Faire S51",
         "end_date": "2020-01-02",
         "id": 3,
-        "name": "Courses",
+        "name": "Projets",
         "priority": "HIGH",
         "start_date": "2020-01-01"
     }
