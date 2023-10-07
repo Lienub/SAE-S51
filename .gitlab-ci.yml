@@ -17,7 +17,7 @@ build:
     - echo "Compile complete."
   artifacts:
     paths:
-      [ToDoList/todo]
+      [todo]
 
 execute:
   stage: test
@@ -36,7 +36,7 @@ leak-test:
     - valgrind --leak-check=yes --error-exitcode=1 --log-file="log" ./todo
   artifacts:
     paths:
-      [ToDoList/log]
+      [log]
 
 generate-doxygen:
   stage: doxygen
