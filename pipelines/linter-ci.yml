@@ -1,0 +1,19 @@
+image: gcc:latest
+
+stages:
+  - lint
+
+clang-tidy:
+  stage: lint
+  script:
+    - echo "Running clang-tidy..."
+    - apt-get update -y
+    - apt-get install -y clang-tidy 
+    - clang-tidy -b ToDoList/build -checks='*' ToDoList/src/**/*.cpp
+    - CLANG_TIDY_EXIT_CODE=$?
+    - if [ $CLANG_TIDY_EXIT_CODE -ne 0 ]; then
+        echo "clang-tidy found issues - failing the job";
+        exit 1;
+      else
+        echo "No clang-tidy issues found";
+      fi
