@@ -6,7 +6,7 @@ BUILDDIR = ToDoList/build
 TESTSDIR = ToDoList/tests
 
 all: todo
-# cd $(BUILDDIR) && cmake ../tests && make
+	cd $(BUILDDIR) && cmake ../tests && make
 
 $(BUILDDIR)/task.o: $(SRCDIR)/task/task.cpp $(INCDIR)/task.h
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
