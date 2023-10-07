@@ -1,0 +1,25 @@
+image: gcc:latest
+
+stages:
+  - build
+  - checkcpp
+
+build:
+  stage: build
+  script:
+    - apt-get update --yes
+    - apt-get install --yes cmake
+    - echo "Building the project..."
+    - make
+
+analyze-code:
+  stage: checkcpp
+  script:
+    - apt-get update --yes
+    - apt-get install cppcheck
+    - echo "Checking code style..."
+    - cppcheck --enable=all . > checkcpp-reports/checkcpp-report.log
+    - cppcheck --enable=all --xml --xml-version=2 . 2> checkcpp-reports/checkcpp-errors-report.xml || true
+  artifacts:
+    paths:
+      - "checkcpp-reports"
