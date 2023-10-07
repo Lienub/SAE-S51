@@ -1,6 +1,4 @@
 image: gcc:latest
-before_script:
- - cd ToDoList
 
 stages:
   - build
