@@ -2,6 +2,7 @@ image: gcc:latest
 
 stages:
   - build
+  - deploy
 
 build-unit-tests:
   stage: build
@@ -17,3 +18,14 @@ build-unit-tests:
   artifacts:
     paths:
       - tests_logs/
+
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r * .public
+    - mv .public public
+    - mv tests_logs/*log public
+  artifacts:
+    paths:
+      - public
