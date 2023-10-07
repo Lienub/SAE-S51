@@ -15,3 +15,11 @@ generate_doxygen:
   artifacts:
     paths:
       - $DOXYGEN_DIR
+
+pages:
+  stage: deploy
+  script:
+    - mv  $DOXYGEN_DIR public/
+  artifacts:
+    paths:
+      - public
