@@ -25,25 +25,28 @@ void help()
 
 int main(int argc, char *argv[])
 {
+
     if (argc < 2)
     {
         help();
         return 0;
     }
-    if (string(argv[1]) == "-c")
+    else
     {
-        cout << "Creation d'une nouvelle tache\n";
-    
-        string filename = loadFilename(loadFilenames, "in");
+        string filename = loadFilename(loadFilenames, "out");
         ifstream inptuFilename(filename);
-        filename = loadFilename(loadFilenames, "out");
+        filename = loadFilename(loadFilenames, "in");
         ofstream outputFilename(filename);
         json json_data = json::parse(inptuFilename);
         outputFilename << json_data.dump(4);
         outputFilename.close();
         inptuFilename.close();
+    }
+    if (string(argv[1]) == "-c")
+    {
+        cout << "Creation d'une nouvelle tache\n";
 
-        filename = loadFilename(loadFilenames, "in");
+        string filename = loadFilename(loadFilenames, "in");
         ifstream inputFile(filename);
         filename = loadFilename(loadFilenames, "out");
         ofstream outputFile(filename);
