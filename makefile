@@ -20,6 +20,9 @@ $(BUILDDIR)/files.o: $(SRCDIR)/utils/files.cpp $(INCDIR)/files.h
 $(BUILDDIR)/delete_task.o: $(SRCDIR)/options/delete_task.cpp $(INCDIR)/todo.h
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
 
+$(BUILDDIR)/create_task.o: $(SRCDIR)/options/create_task.cpp $(INCDIR)/todo.h $(INCDIR)/nlohmann/json.hpp
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
+
 $(BUILDDIR)/json_helper.o: $(SRCDIR)/helper/json_helper.cpp $(INCDIR)/json_helper.h $(INCDIR)/nlohmann/json.hpp
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
 
@@ -29,7 +32,7 @@ $(BUILDDIR)/sort.o: $(SRCDIR)/utils/sort.cpp $(INCDIR)/sort.h
 $(BUILDDIR)/main.o: $(SRCDIR)/main.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCDIR)
 	
-todo: $(BUILDDIR)/main.o $(BUILDDIR)/task.o $(BUILDDIR)/tasks_display.o $(BUILDDIR)/sort.o $(BUILDDIR)/json_helper.o $(BUILDDIR)/delete_task.o $(BUILDDIR)/files.o
+todo: $(BUILDDIR)/main.o $(BUILDDIR)/task.o $(BUILDDIR)/tasks_display.o $(BUILDDIR)/sort.o $(BUILDDIR)/json_helper.o $(BUILDDIR)/delete_task.o $(BUILDDIR)/files.o $(BUILDDIR)/create_task.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 test:

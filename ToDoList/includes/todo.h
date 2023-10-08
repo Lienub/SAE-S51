@@ -39,4 +39,6 @@ void displayTask(ifstream &inputFile, int id);
  */
 json deleteTask(ifstream &file, int id);
 
+Task createTask(ifstream &inputFile, ofstream &outputFile);
+
 #endif

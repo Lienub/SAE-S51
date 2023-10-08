@@ -55,9 +55,9 @@ TEST_CASE("Sorting tasks by priority", "[sortTasksByPriority]") {
 
     sortTasksByPriority(tasks);
 
-    REQUIRE(tasks[0].getPriority() == Priority::HIGH);
-    REQUIRE(tasks[1].getPriority() == Priority::MEDIUM);
-    REQUIRE(tasks[2].getPriority() == Priority::LOW);
+    REQUIRE(tasks[0].getPriority() == "HIGH");
+    REQUIRE(tasks[1].getPriority() == "MEDIUM");
+    REQUIRE(tasks[2].getPriority() == "LOW");
 }
 
 

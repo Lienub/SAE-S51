@@ -11,7 +11,7 @@ namespace JSONHelper
         taskJson["id"] = task.getId();
         taskJson["name"] = task.getName();
         taskJson["description"] = task.getDescription();
-        taskJson["priority"] = static_cast<int>(task.getPriority());
+        taskJson["priority"] = task.getPriority();
         taskJson["start_date"] = task.getStartDate();
         taskJson["end_date"] = task.getEndDate();
         return taskJson;

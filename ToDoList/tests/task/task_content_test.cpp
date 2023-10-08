@@ -11,7 +11,7 @@ TEST_CASE("Test Task Body", "[task]")
     REQUIRE(task.getId() == 123);
     REQUIRE(task.getName() == "Faire les courses");
     REQUIRE(task.getDescription() == "Acheter des fruits");
-    REQUIRE(task.getPriority() == Priority::MEDIUM);
+    REQUIRE(task.getPriority() == "MEDIUM");
     REQUIRE(task.getStartDate() == "2023-10-01");
     REQUIRE(task.getEndDate() == "2023-10-02");
 }

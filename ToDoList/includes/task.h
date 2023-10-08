@@ -17,7 +17,7 @@ class Task {
         int id;
         string name;
         string description;
-        Priority priority;
+        string priority;
         string startDate;
         string endDate;
 
@@ -26,7 +26,7 @@ class Task {
         int getId();
         string getName();
         string getDescription();
-        Priority getPriority();
+        string getPriority();
         string getStartDate();
         string getEndDate();
 };

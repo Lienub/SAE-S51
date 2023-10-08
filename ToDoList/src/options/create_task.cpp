@@ -1,9 +1,11 @@
-#include "task.h"
-#include "json_helper.h"
+#include "../../includes/task.h"
+#include "../../includes/json_helper.h"
+#include "../../includes/sort.h"
 #include <iostream>
 #include <string>
 #include <limits>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -17,81 +19,88 @@ using namespace std;
  * @param outputFile The output file to write the new task to.
  * @return The new task.
  */
-Task createTask(ofstream& outputFile) {
+Task createTask(ifstream &inputFile, ofstream &outputFile)
+{
 
     // Prompt the user for task details
     int newId;
-    string newName, newDescription, newStartDate, newEndDate;
-    Priority newPriority;
+    string newName, newDescription, newStartDate, newEndDate, newPriority;
 
-    // Loop until valid input is provided for ID
-    while (true) {
-        cout << "ID de la tâche : ";
-        cin >> newId;
-
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "ID invalide. Veuillez entrer un nombre entier.\n";
-        } else {
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            break;
-        }
+    json data = json::parse(inputFile);
+    vector<Task> tasks;
+    for (json &jsonTask : data)
+    {
+        Task task = JSONHelper::jsonToTask(jsonTask);
+        tasks.push_back(task);
+    }
+    if(!tasks.empty()) {
+        sortTasksById(tasks);
+        newId = tasks.back().getId() + 1;
+    } else {
+        newId = 1;
     }
 
-   // Loop until valid input is provided for Name (up to 64 characters)
-    while (true) {
+    // Loop until valid input is provided for Name (up to 64 characters)
+    while (true)
+    {
         cout << "Nom de la tâche (max 64 caractères) : ";
         cin.ignore(); // Ignore the newline character left in the input buffer
         getline(cin, newName);
 
-        if (newName.length() > 64) {
+        if (newName.length() > 64)
+        {
             cout << "Le nom de la tâche ne peut pas dépasser 64 caractères. Veuillez réessayer.\n";
-        } else if (newName.empty()) {
+        }
+        else if (newName.empty())
+        {
             cout << "Le nom de la tâche ne peut pas être vide. Veuillez réessayer.\n";
-        } else {
+        }
+        else
+        {
             break;
         }
     }
 
     // Loop until valid input is provided for Description
-    while (true) {
+    while (true)
+    {
         cout << "Description de la tâche : ";
         getline(cin, newDescription);
 
-        if (newDescription.empty()) {
+        if (newDescription.empty())
+        {
             cout << "La description ne peut pas être vide. Veuillez réessayer.\n";
-        } else {
+        }
+        else
+        {
             break;
         }
     }
 
     // Loop until valid input is provided for Priority
-    while (true) {
+    while (true)
+    {
         cout << "Priorité (LOW, MEDIUM, HIGH) : ";
-        string priorityStr;
-        cin >> priorityStr;
+        cin >> newPriority;
 
-        if (priorityStr == "LOW") {
-            newPriority = Priority::LOW;
+        if (newPriority != "LOW" && newPriority != "MEDIUM" && newPriority != "HIGH")
+        {
+            cout << "La priorité doit être LOW, MEDIUM ou HIGH. Veuillez réessayer.\n";
+        }
+        else
+        {
             break;
-        } else if (priorityStr == "MEDIUM") {
-            newPriority = Priority::MEDIUM;
-            break;
-        } else if (priorityStr == "HIGH") {
-            newPriority = Priority::HIGH;
-            break;
-        } else {
-            cout << "Priorité invalide. Veuillez choisir parmi LOW, MEDIUM, HIGH.\n";
         }
     }
 
     // Loop until valid input is provided for Start Date
-    while (true) {
+    while (true)
+    {
         cout << "Date de début de la tâche : ";
         cin >> newStartDate;
 
-        if (newStartDate.empty()) {
+        if (newStartDate.empty())
+        {
             newStartDate = "none";
         }
 
@@ -99,22 +108,34 @@ Task createTask(ofstream& outputFile) {
     }
 
     // Loop until valid input is provided for End Date
-    while (true) {
+    while (true)
+    {
         cout << "Date de fin de la tâche : ";
         cin >> newEndDate;
 
-        if (newEndDate.empty()) {
+        if (newEndDate.empty())
+        {
             newEndDate = "none";
         }
 
         break;
     }
 
-    Task newTask(newId, newName, newDescription, newPriority, newStartDate, newEndDate);
+    Task newTask(newId, newName, newDescription, (newPriority == "HIGH") ? Priority::HIGH : (newPriority == "MEDIUM") ? Priority::MEDIUM
+                                                                                                                      : Priority::LOW,
+                 newStartDate, newEndDate);
+    tasks.push_back(newTask);
 
-    json taskJson = JSONHelper::taskToJson(newTask);
+    json tasksJsonArray;
+    for (Task &task : tasks)
+    {
+        tasksJsonArray.push_back(JSONHelper::taskToJson(task));
+    }
 
-    outputFile << taskJson.dump(4) << endl;
+    outputFile << tasksJsonArray.dump(4);
+
+    inputFile.close();
+    outputFile.close();
 
     cout << "Tâche créée avec succès.\n";
 
