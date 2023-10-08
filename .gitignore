@@ -1,0 +1,4 @@
+ToDoList/build/*.o
+ToDoList/build/CMakeFiles/
+ToDoList/build/*.txt
+ToDoList/build/*.cmake
