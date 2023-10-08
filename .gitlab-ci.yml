@@ -54,7 +54,7 @@ lint-test:
       - $CI_COMMIT_MESSAGE =~ /fix/i
       - $CI_COMMIT_REF_NAME =~ /features/i
   trigger:
-    include: "pipelines/lint-ci.yml" 
+    include: "pipelines/linter-ci.yml" 
     strategy: depend
 
   
