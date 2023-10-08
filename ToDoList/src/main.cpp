@@ -106,8 +106,18 @@ int main(int argc, char *argv[])
     }
     else if (string(argv[1]) == "-u")
     {
-        cout << "Modification de la tache avec l'ID donnée\n";
-        // TODO
+        if (argc == 3)
+        {
+            string filename = loadFilename(loadFilenames, "in");
+            ifstream inputFile(filename);
+            filename = loadFilename(loadFilenames, "out");
+            ofstream outputFile(filename);
+            modifyTask(inputFile, outputFile, stoi(argv[2]));
+        }
+        else
+        {
+            help();
+        }
     }
     else if (string(argv[1]) == "-d")
     {
