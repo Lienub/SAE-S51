@@ -56,7 +56,7 @@ lint-test:
       artifacts: true
   only:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /fix/i
+      - $CI_COMMIT_MESSAGE =~ /fix|feat/i
       - $CI_COMMIT_REF_NAME =~ /features/i
   trigger:
     include: "pipelines/linter-ci.yml" 
