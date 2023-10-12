@@ -16,7 +16,6 @@
 ### Verification si les tests unitaire ont réussi :
 
 - ### [Page tests unitaires](https://walter-abid-wawrzyniak.pages.unistra.fr/sae-s51/) (Gitlab Page)
-<br>
 
 # Documentation
 
@@ -27,7 +26,7 @@
 ```shell
 apt-get update --yes
 apt-get-install --yes cmake
-apt-get-install --yes cppchecck
+apt-get-install --yes cppcheck
 ```
 
 ### Projet
@@ -57,8 +56,8 @@ Le projet est divisé en 3 parties :
     - `./includes` : contient les fichiers en-tête
     - `./build` : contient les fichiers compilés
     - `./data` : contient l'endroit où les fichiers de données doivent etre mis
-    - `./test` : contient les tests unitaires
+    - `./tests` : contient les tests unitaires
 - `docs` : contient la documentation
 - `tests_logs` : contient les logs des tests unitaires
-- `checkcpp-reports` : contient les rapports de cppcheck (details dans fichier .log et erreurs dans fichier .xml)
-- `pipelines` : contient les scripts pour lancer les pipelines de manière séparée
+- `checkcpp-reports` : contient les rapports de cppcheck (details dans le fichier LOG et les erreurs dans le fichier XML)
+- `pipelines` : contient les scripts pour lancer les pipelines de manière séparées
