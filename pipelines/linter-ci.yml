@@ -9,7 +9,7 @@ clang-tidy:
     - echo "Running clang-tidy..."
     - sudo apt-get update -y
     - sudo apt-get install -y clang-tidy 
-    - clang-tidy -p ToDoList/build -checks='*' ToDoList/src/**/*.cpp
+    - clang-tidy -p ToDoList/build -checks='*' ToDoList/src/**/*.cpp 2>&1 | tee clang-tidy-reports/linter-report.txt
     - CLANG_TIDY_EXIT_CODE=$?
     - if [ $CLANG_TIDY_EXIT_CODE -ne 0 ]; then
         echo "clang-tidy found issues - failing the job";
@@ -17,3 +17,6 @@ clang-tidy:
       else
         echo "No clang-tidy issues found";
       fi
+  artifacts:
+    paths:
+      - clang-tidy-reports/
