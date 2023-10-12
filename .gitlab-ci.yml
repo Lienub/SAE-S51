@@ -3,7 +3,6 @@ image: gcc:latest
 stages:
   - build
   - test
-  - doxygen
   - deploy
 
 build:
@@ -29,6 +28,9 @@ execute:
 
 leak-test:
   stage: test
+  only:
+    changes:
+      - "ToDoList/**/**"
   script:
     - echo "Installing valgrind..."
     - apt-get update -y
@@ -41,6 +43,9 @@ leak-test:
 
 build-unit-tests:
   stage: test
+  only:
+    changes:
+      - "ToDoList/**/**"
   trigger:
     include: "pipelines/tests-ci.yml"
 
@@ -58,16 +63,26 @@ lint-test:
     strategy: depend
 
   
+analyze-code:
+  stage: test
+  only:
+    changes:
+      - "ToDoList/**/**"
+  trigger:
+    include: "pipelines/checkcpp-ci.yml"
+
 generate-doxygen:
-  stage: doxygen
+  stage: deploy
+  when: on_success
+  only:
+    changes:
+      - "ToDoList/**/**"
   trigger:
     include: "pipelines/doxygen-ci.yml"
-  only:
-    - master
 
-
-deploy-job: 
+deploy-application: 
   stage: deploy
+  when: on_success
   environment: production
   script:
     - echo "Deploying application..."

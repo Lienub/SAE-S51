@@ -157,7 +157,7 @@ void sortTasksByPriority(vector<Task> &tasks)
  */
 bool sortTaskByPriority(Task &task1, Task &task2)
 {
-    int prioityTask1 = (task1.getPriority() == Priority::HIGH) ? 1 : (task1.getPriority() == Priority::MEDIUM) ? 2 : 3;
-    int prioityTask2 =  (task2.getPriority() == Priority::HIGH) ? 1 : (task2.getPriority() == Priority::MEDIUM) ? 2 : 3;;
+    int prioityTask1 = (task1.getPriority() == "HIGH") ? 1 : (task1.getPriority() == "MEDIUM") ? 2 : 3;
+    int prioityTask2 =  (task2.getPriority() == "HIGH") ? 1 : (task2.getPriority() == "MEDIUM") ? 2 : 3;
     return prioityTask1 <= prioityTask2;
 }

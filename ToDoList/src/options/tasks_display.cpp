@@ -51,11 +51,10 @@ void displayTasks(ifstream &file, string typeSort)
 
     for (Task task : tasks)
     {
-        string priority = task.getPriority() == Priority::HIGH ? "HIGH" : (task.getPriority() == Priority::MEDIUM ? "MEDIUM" : "LOW");
         cout << "ID : " << task.getId() << "\n";
         cout << "Nom : " << task.getName() << "\n";
         cout << "Description : " << task.getDescription() << "\n";
-        cout << "Priorité : " << priority << "\n";
+        cout << "Priorité : " << task.getPriority() << "\n";
         cout << "Date de début : " << task.getStartDate() << "\n";
         cout << "Date de fin : " << task.getEndDate() << "\n";
         cout << "------------------------\n";
@@ -83,11 +82,10 @@ void displayTask(ifstream &inputFile, int id)
             cout << "========== Affiche la tache avec comme id : " << id << " ==========\n";
             cout << "========================================================\n\n";
             found = true;
-            string priority = task.getPriority() == Priority::HIGH ? "HIGH" : (task.getPriority() == Priority::MEDIUM ? "MEDIUM" : "LOW");
             cout << "ID : " << task.getId() << "\n";
             cout << "Nom : " << task.getName() << "\n";
             cout << "Description : " << task.getDescription() << "\n";
-            cout << "Priorité : " << priority << "\n";
+            cout << "Priorité : " << task.getPriority()  << "\n";
             cout << "Date de début : " << task.getStartDate() << "\n";
             cout << "Date de fin : " << task.getEndDate() << "\n";
             cout << "------------------------\n";

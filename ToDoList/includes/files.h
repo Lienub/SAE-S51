@@ -1,11 +1,11 @@
 #ifndef FILES_H
 #define FILES_H
 
-using namespace std;
-
-#include <string>
 #include <iostream>
+#include <string>
 #include <fstream>
+
+using namespace std;
 
 /**
  * @brief save loaded file based on file type
