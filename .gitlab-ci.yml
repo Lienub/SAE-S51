@@ -58,6 +58,7 @@ analyze-code:
 
 generate-doxygen:
   stage: deploy
+  when: on_success
   only:
     changes:
       - "ToDoList/**/**"
@@ -66,6 +67,7 @@ generate-doxygen:
 
 deploy-application: 
   stage: deploy
+  when: on_success
   environment: production
   script:
     - echo "Deploying application..."

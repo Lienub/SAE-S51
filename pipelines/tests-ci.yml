@@ -21,6 +21,8 @@ build-unit-tests:
 
 pages:
   stage: deploy
+  only:
+    - main 
   script:
     - mkdir .public
     - cp -r * .public
