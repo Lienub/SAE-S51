@@ -31,6 +31,8 @@ leak-test:
   only:
     changes:
       - "ToDoList/**/**"
+      - "pipelines/**"
+      - .gitlab-ci.yml
   script:
     - echo "Installing valgrind..."
     - sudo apt-get update -y
@@ -46,6 +48,8 @@ build-unit-tests:
   only:
     changes:
       - "ToDoList/**/**"
+      - "pipelines/**"
+      - .gitlab-ci.yml
   trigger:
     include: "pipelines/tests-ci.yml"
 
@@ -68,6 +72,8 @@ analyze-code:
   only:
     changes:
       - "ToDoList/**/**"
+      - "pipelines/**"
+      - .gitlab-ci.yml
   trigger:
     include: "pipelines/checkcpp-ci.yml"
 
@@ -77,6 +83,8 @@ generate-doxygen:
   only:
     changes:
       - "ToDoList/**/**"
+      - "pipelines/**"
+      - .gitlab-ci.yml
   trigger:
     include: "pipelines/doxygen-ci.yml"
 
