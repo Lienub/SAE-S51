@@ -4,6 +4,7 @@ stages:
   - build
   - test
   - deploy
+  - release
 
 build:
   stage: build
@@ -95,7 +96,6 @@ generate-doxygen:
     - job: execute
     - job: leak-test
     - job: build-unit-tests
-    - job: lint-test
     - job: analyze-code
   when: on_success
   only:
@@ -112,8 +112,30 @@ deploy-application:
     - job: execute
     - job: leak-test
     - job: build-unit-tests
-    - job: lint-test
     - job: analyze-code
   when: on_success
+  only:
+    variables:
+      - $CI_COMMIT_REF_NAME =~ /develop|main/i
   trigger:
     include: "pipelines/executable-ci.yml"
+
+create:release:
+  stage: release
+  needs:
+    - job: deploy-application
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  variables:
+    TAG: '$CI_COMMIT_SHA'
+  only:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /merge/i
+      - $CI_COMMIT_REF_NAME =~ /main/i
+  script:
+    - echo "Create Release $TAG"
+    - echo $JOB_ID  
+  release:
+    name: 'Release $TAG'
+    tag_name: '$TAG'
+    ref: '$TAG'
+    description: 'Release $TAG'
