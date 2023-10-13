@@ -16,6 +16,8 @@ build-unit-tests:
     - make test
     - echo "The tests passed !"
   artifacts:
+    expose_as: 'Tests logs files'
+    expire_in: 1 week
     paths:
       - tests_logs/
 
