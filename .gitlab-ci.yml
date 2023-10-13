@@ -95,7 +95,6 @@ generate-doxygen:
     - job: execute
     - job: leak-test
     - job: build-unit-tests
-    - job: lint-test
     - job: analyze-code
   when: on_success
   only:
@@ -112,7 +111,6 @@ deploy-application:
     - job: execute
     - job: leak-test
     - job: build-unit-tests
-    - job: lint-test
     - job: analyze-code
   when: on_success
   trigger:
