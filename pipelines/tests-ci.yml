@@ -1,0 +1,36 @@
+image: gcc:latest
+
+stages:
+  - build
+  - deploy
+
+build-unit-tests:
+  stage: build
+  script:
+    - echo "Installing cmake..."
+    - apt-get update --yes
+    - apt-get install --yes cmake
+    - echo "Compiling the code..."
+    - make
+    - echo "Running the tests..."
+    - make test
+    - echo "The tests passed !"
+  artifacts:
+    paths:
+      - tests_logs/
+
+pages:
+  stage: deploy
+  only:
+    - main 
+  script:
+    - mkdir .public
+    - cp -r * .public
+    - mv .public public
+    - ls
+    - mv tests_logs/*.log public
+    - ls
+    - ls public
+  artifacts:
+    paths:
+      - public

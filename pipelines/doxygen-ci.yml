@@ -11,7 +11,9 @@ generate_doxygen:
   script:
     - apt-get update -qy
     - apt-get install -y doxygen
+    - echo "Generating Doxyfile..."
     - doxygen Doxyfile
+    - echo "Successfully generated Doxyfile !"
   artifacts:
     paths:
       - $DOXYGEN_DIR

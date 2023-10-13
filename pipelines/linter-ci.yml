@@ -1,0 +1,25 @@
+image: gcc:latest
+
+stages:
+  - lint
+
+clang-tidy:
+  stage: lint
+  script:
+    - echo "Running clang-tidy..."
+    - sudo apt-get update -y
+    - sudo apt-get install -y clang-tidy 
+    - mkdir clang-tidy-reports
+    - echo "Processing..."
+    - clang-tidy -p ToDoList/build -checks='bugprone, cppcoreguidelines, clang-analyzer' -header-filter='.*' ToDoList/src/**/*.cpp > clang-tidy-reports/clang-tidy-report.txt 2>&1
+    - CLANG_TIDY_EXIT_CODE=$?
+    - if [ $CLANG_TIDY_EXIT_CODE -ne 0 ]; then
+        echo "clang-tidy found issues - failing the job";
+        exit 1;
+      else
+        echo "No clang-tidy issues found";
+      fi
+    - echo "log file generated."
+  artifacts:
+    paths:
+      - clang-tidy-reports/

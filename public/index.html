@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Tests Unitaires</title>
+    <link type="text/css" rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Rapport de Tests Unitaires</h1>
+    <table id="testResults">
+        <tr>
+            <th>Test Case</th>
+            <th>Description</th>
+            <th>Résultat</th>
+        </tr>
+    </table>
+    <footer>
+        <p>Projet S51 | ToDoList</p>
+    </footer>
+    <script>
+        const logFiles = [
+            'delete_task_test.log',
+            'load_files_test.log',
+            'sort_tasks_test.log',
+            'task_content_test.log'
+        ];
+
+        const arrayDesc = [
+            'Suppression d\'une tâche',
+            'Chargement de fichiers',
+            'Tri des tâches',
+            'Vérification du contenu d\'une tâche'
+        ];
+
+        const table = document.getElementById('testResults');
+        i = 0;
+        logFiles.forEach(fileName => {
+            fetch(`${fileName}`)
+                .then(response => response.text())
+                .then(content => {
+                    const result = content.includes('All tests passed') ? 'PASSED' : 'FAILED';
+                    const newRow = `<tr><td>${fileName}</td><td>${arrayDesc[i]}</td><td class="${result.toLowerCase()}">${result}</td></tr>`;
+                    table.innerHTML += newRow;
+                    i++;
+                })
+                .catch(error => {
+                    console.error(`Erreur de chargement du fichier ${fileName} :`, error);
+                });
+        });
+    </script>
+</body>
+
+</html>

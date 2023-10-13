@@ -1,9 +1,98 @@
 image: gcc:latest
 
 stages:
+<<<<<<< HEAD
   - Doxygen
  
 generateDocumentation:
   stage: Doxygen
   trigger:
     include: "pipelines/doxygen-ci.yml"
+=======
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - echo "Installing cmake..."
+    - sudo apt-get update -y
+    - sudo apt-get install cmake -y 
+    - echo "Compiling the code..."
+    - make
+    - echo "Compile complete."
+  artifacts:
+    paths:
+      - todo
+      - ToDoList/build
+
+execute:
+  stage: test
+  script:
+    - echo "Executing todo..."
+    - ./todo
+    - echo "Code successfully executed..."
+
+leak-test:
+  stage: test
+  only:
+    changes:
+      - "ToDoList/**/**"
+  script:
+    - echo "Installing valgrind..."
+    - sudo apt-get update -y
+    - sudo apt-get install valgrind -y
+    - echo "Executing valgrind..."
+    - valgrind --leak-check=yes --error-exitcode=1 --log-file="log" ./todo
+  artifacts:
+    paths:
+      [log]
+
+build-unit-tests:
+  stage: test
+  only:
+    changes:
+      - "ToDoList/**/**"
+  trigger:
+    include: "pipelines/tests-ci.yml"
+
+lint-test:
+  stage: test
+  needs:
+    - job: build
+      artifacts: true
+  only:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /fix|feat/i
+      - $CI_COMMIT_REF_NAME =~ /features/i
+  trigger:
+    include: "pipelines/linter-ci.yml" 
+    strategy: depend
+
+  
+analyze-code:
+  stage: test
+  only:
+    changes:
+      - "ToDoList/**/**"
+  trigger:
+    include: "pipelines/checkcpp-ci.yml"
+
+generate-doxygen:
+  stage: deploy
+  when: on_success
+  only:
+    changes:
+      - "ToDoList/**/**"
+  trigger:
+    include: "pipelines/doxygen-ci.yml"
+
+deploy-application: 
+  stage: deploy
+  when: on_success
+  environment: production
+  script:
+    - echo "Deploying application..."
+    - echo "Application successfully deployed."
+>>>>>>> main
