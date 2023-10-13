@@ -83,7 +83,8 @@ generate-doxygen:
 deploy-application: 
   stage: deploy
   when: on_success
-  environment: production
-  script:
-    - echo "Deploying application..."
-    - echo "Application successfully deployed."
+  only:
+    changes:
+      - "ToDoList/**/**"
+  trigger:
+    include: "pipelines/executable-ci.yml"

@@ -1,0 +1,17 @@
+image: gcc:latest
+
+stages:
+  - generate_executable
+
+generate_executable:
+  stage: generate_executable
+  script:
+    - apt-get update -y
+    - apt-get install -y cmake
+    - apt-get install -y cpack
+    - echo "Generating debian executable..."
+    - cmake .
+    - cd ToDoList
+    - cmake — build .
+    - cpack
+    - echo "Successfully generated debian executable !"
