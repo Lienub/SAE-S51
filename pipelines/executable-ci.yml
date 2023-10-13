@@ -1,0 +1,20 @@
+image: gcc:latest
+
+stages:
+  - generate_executable
+
+generate_executable:
+  stage: generate_executable
+  script:
+    - apt-get update -y
+    - apt-get install -y cmake
+    - echo "Generating debian executable..."
+    - cd ToDoList
+    - cmake ..
+    - cmake --build .
+    - cpack
+    - echo "Successfully generated debian executable !"
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - ToDoList/todolist-0.1.1-Linux.deb
