@@ -15,5 +15,7 @@ generate_doxygen:
     - doxygen Doxyfile
     - echo "Successfully generated Doxyfile !"
   artifacts:
+    expose_as: 'Documentation'
+    expire_in: 1 week
     paths:
       - $DOXYGEN_DIR
