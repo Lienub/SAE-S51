@@ -22,7 +22,7 @@ generate_doxygen:
 pages:
   stage: deploy
   script:
-    - mv  $DOXYGEN_DIR public/documentation/
+    - mv $DOXYGEN_DIR/* public/documentation
   artifacts:
     paths:
       - public
