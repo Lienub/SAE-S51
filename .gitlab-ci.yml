@@ -92,7 +92,11 @@ analyze-code:
 generate-doxygen:
   stage: deploy
   needs:
-    - stage: test
+    - job: execute
+    - job: leak-test
+    - job: build-unit-tests
+    - job: lint-test
+    - job: analyze-code
   when: on_success
   only:
     changes:
@@ -105,7 +109,11 @@ generate-doxygen:
 deploy-application: 
   stage: deploy
   needs:
-    - stage: test
+    - job: execute
+    - job: leak-test
+    - job: build-unit-tests
+    - job: lint-test
+    - job: analyze-code
   when: on_success
   trigger:
     include: "pipelines/executable-ci.yml"
