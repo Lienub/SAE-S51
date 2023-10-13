@@ -2,6 +2,7 @@ image: gcc:latest
 
 stages:
   - generate_doxygen
+  - deploy
 
 variables:
   DOXYGEN_DIR: "docs/html/"
