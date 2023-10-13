@@ -7,8 +7,8 @@ clang-tidy:
   stage: lint
   script:
     - echo "Running clang-tidy..."
-    - sudo apt-get update -y
-    - sudo apt-get install -y clang-tidy 
+    - apt-get update -y
+    - apt-get install -y clang-tidy 
     - mkdir clang-tidy-reports
     - echo "Processing..."
     - clang-tidy -p ToDoList/build -checks='bugprone, cppcoreguidelines, clang-analyzer' -header-filter='.*' ToDoList/src/**/*.cpp > clang-tidy-reports/clang-tidy-report.txt 2>&1
@@ -21,5 +21,7 @@ clang-tidy:
       fi
     - echo "log file generated."
   artifacts:
+    expose_as: 'Linter Reports'
+    expire_in: 1 week
     paths:
       - clang-tidy-reports/

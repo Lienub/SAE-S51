@@ -24,5 +24,7 @@ analyze-code:
     - echo "checkcpp-errors-report.xml file generated"
     - echo "End of the analysis code."
   artifacts:
+    expose_as: 'Checkcpp Reports'
+    expire_in: 1 week
     paths:
       - "checkcpp-reports"
