@@ -11,7 +11,7 @@ generate_executable:
     - echo "Generating debian executable..."
     - cd ToDoList
     - cmake ..
-    - cmake — build .
+    - cmake --build .
     - cpack
     - echo "Successfully generated debian executable !"
   artifacts:
