@@ -2,7 +2,6 @@ image: gcc:latest
 
 stages:
   - generate_doxygen
-  - deploy
 
 variables:
   DOXYGEN_DIR: "docs/html/"
@@ -18,11 +17,3 @@ generate_doxygen:
   artifacts:
     paths:
       - $DOXYGEN_DIR
-
-pages:
-  stage: deploy
-  script:
-    - mv $DOXYGEN_DIR/* public/documentation
-  artifacts:
-    paths:
-      - public
