@@ -4,6 +4,7 @@ stages:
   - build
   - test
   - deploy
+  - release
 
 build:
   stage: build
@@ -118,3 +119,23 @@ deploy-application:
       - $CI_COMMIT_REF_NAME =~ /develop|main/i
   trigger:
     include: "pipelines/executable-ci.yml"
+
+create:release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - job: deploy_application
+  variables:
+    TAG: '$CI_COMMIT_SHA'
+  only:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /merge/i
+      - $CI_COMMIT_REF_NAME =~ /main/i
+  script:
+    - echo "Create Release $TAG"
+    - echo $JOB_ID  
+  release:
+    name: 'Release $TAG'
+    tag_name: '$TAG'
+    ref: '$TAG'
+    description: 'Release $TAG'
