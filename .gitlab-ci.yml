@@ -123,7 +123,7 @@ deploy-application:
 create:release:
   stage: release
   needs:
-    - job: deploy_application
+    - job: deploy-application
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   variables:
     TAG: '$CI_COMMIT_SHA'
