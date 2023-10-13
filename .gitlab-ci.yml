@@ -23,6 +23,8 @@ build:
 
 execute:
   stage: test
+  needs:
+    - job: build
   script:
     - echo "Executing todo..."
     - ./todo
@@ -30,6 +32,8 @@ execute:
 
 leak-test:
   stage: test
+  needs:
+    - job: build
   only:
     changes:
       - "ToDoList/**/**"
@@ -49,6 +53,8 @@ leak-test:
 
 build-unit-tests:
   stage: test
+  needs:
+    - job: build
   only:
     changes:
       - "ToDoList/**/**"
@@ -73,6 +79,8 @@ lint-test:
   
 analyze-code:
   stage: test
+  needs:
+    - job: build
   only:
     changes:
       - "ToDoList/**/**"
@@ -83,6 +91,8 @@ analyze-code:
 
 generate-doxygen:
   stage: deploy
+  needs:
+    - stage: test
   when: on_success
   only:
     changes:
@@ -94,6 +104,8 @@ generate-doxygen:
 
 deploy-application: 
   stage: deploy
+  needs:
+    - stage: test
   when: on_success
   trigger:
     include: "pipelines/executable-ci.yml"
