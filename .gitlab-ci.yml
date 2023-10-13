@@ -82,9 +82,5 @@ generate-doxygen:
 
 deploy-application: 
   stage: deploy
-  when: on_success
-  only:
-    changes:
-      - "ToDoList/**/**"
   trigger:
     include: "pipelines/executable-ci.yml"
