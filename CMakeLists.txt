@@ -18,7 +18,7 @@ target_include_directories(files
 )
 
 add_executable(todolistapp ToDoList/src/main.cpp)
-target_link_libraries(todolistapp todolist files sort task create_task delete_task modify_task tasks_display)
+target_link_libraries(todolistapp files sort task create_task delete_task modify_task tasks_display json_helper)
 
 install(TARGETS todolistapp
     COMPONENT linapp
