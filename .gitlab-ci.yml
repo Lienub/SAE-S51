@@ -65,6 +65,8 @@ analyze-code:
 
 generate-doxygen:
   stage: deploy
+  dependencies: 
+    - build-unit-tests
   when: on_success
   trigger:
     include: "pipelines/doxygen-ci.yml"
