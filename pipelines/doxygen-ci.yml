@@ -4,7 +4,7 @@ stages:
   - generate_doxygen
 
 variables:
-  DOXYGEN_DIR: "docs"
+  DOXYGEN_DIR: "docs/html/"
 
 generate_doxygen:
   stage: generate_doxygen
@@ -21,7 +21,7 @@ generate_doxygen:
 pages:
   stage: deploy
   script:
-    - mv  $DOXYGEN_DIR public/
+    - mv  $DOXYGEN_DIR public/documentation/
   artifacts:
     paths:
       - public
