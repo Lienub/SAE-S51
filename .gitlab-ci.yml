@@ -42,7 +42,7 @@ leak-test:
     - echo "Executing valgrind..."
     - valgrind --leak-check=yes --error-exitcode=1 --log-file="log" ./todo
   artifacts:
-    expose_as: 'Fuites De Mémoire'
+    expose_as: 'LeakTest'
     expire_in: 1 hrs
     paths:
       [log]
