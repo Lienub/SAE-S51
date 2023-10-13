@@ -16,4 +16,4 @@ generate_executable:
     - echo "Successfully generated debian executable !"
   artifacts:
     paths:
-      - ToDoList/_CPack_Packages/Linux/DEB/PreinstallOutput.log
+      - ToDoList/todolist-0.1.1-Linux.deb
