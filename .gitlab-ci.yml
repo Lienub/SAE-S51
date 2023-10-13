@@ -113,5 +113,8 @@ deploy-application:
     - job: build-unit-tests
     - job: analyze-code
   when: on_success
+  only:
+    variables:
+      - $CI_COMMIT_REF_NAME =~ /develop|main/i
   trigger:
     include: "pipelines/executable-ci.yml"
