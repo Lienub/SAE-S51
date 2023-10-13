@@ -9,8 +9,8 @@ generate_executable:
     - apt-get update -y
     - apt-get install -y cmake
     - echo "Generating debian executable..."
-    - cmake .
     - cd ToDoList
+    - cmake ..
     - cmake — build .
     - cpack
     - echo "Successfully generated debian executable !"
