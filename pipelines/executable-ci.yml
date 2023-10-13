@@ -14,3 +14,6 @@ generate_executable:
     - cmake — build .
     - cpack
     - echo "Successfully generated debian executable !"
+  artifacts:
+    paths:
+      - ToDoList/_CPack_Packages/Linux/DEB/PreinstallOutput.log
