@@ -125,8 +125,8 @@ create:release:
   needs:
     - job: deploy-application
   image: registry.gitlab.com/gitlab-org/release-cli:latest
-  variables:
-    TAG: '$CI_COMMIT_SHA[0,7]'
+  before_script:
+    - export TAG=$(echo "$CI_COMMIT_SHA" | cut -c 1-15)
   only:
     variables:
       - $CI_COMMIT_MESSAGE =~ /merge/i
