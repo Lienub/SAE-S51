@@ -82,5 +82,6 @@ generate-doxygen:
 
 deploy-application: 
   stage: deploy
+  when: on_success
   trigger:
     include: "pipelines/executable-ci.yml"

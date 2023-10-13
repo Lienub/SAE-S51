@@ -11,50 +11,14 @@ add_library(modify_task STATIC ToDoList/src/options/modify_task.cpp)
 add_library(tasks_display STATIC ToDoList/src/options/tasks_display.cpp)
 add_library(json_helper STATIC ToDoList/src/helper/json_helper.cpp)
 
-
-target_include_directories(files
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/includes"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/data"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/src"
-)
-
-target_include_directories(sort
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/includes"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/data"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/src"
-)
-
-target_include_directories(task
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/includes"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/data"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/src"
-)
-
-target_include_directories(create_task
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/includes"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/data"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/src"
-)
-
-target_include_directories(delete_task
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/includes"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/data"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/src"
-)
-
-target_include_directories(tasks_display
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/includes"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/data"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/src"
-)
-
-target_include_directories(json_helper
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/includes"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/data"
-    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/src"
-)
-
 add_executable(todolistapp ToDoList/src/main.cpp)
+
+target_include_directories(todolistapp
+    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/includes"
+    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/data"
+    PUBLIC "{CMAKE_CURRENT_SOURCE_DIR}/src"
+)
+
 
 target_link_libraries(files task)
 target_link_libraries(sort task)
