@@ -5,6 +5,8 @@
 - Wawrzyniak Maxime
 - Walter Damien
 
+> Manque explication du projet
+
 ### Langage de programmation : 
 - c++
 ### Libraires c++ :
@@ -50,6 +52,9 @@ make clean # Nettoyage des fichiers générés (compilation, documentation, cmak
 
 ## Architecture du projet
 
+> Element pas necéssaire
+
+
 Le projet est divisé en 3 parties :
 - `ToDoList` : contient les classes et fonctions du programme en c++
     - `./src` : contient les fichiers source du programme
@@ -61,3 +66,5 @@ Le projet est divisé en 3 parties :
 - `tests_logs` : contient les logs des tests unitaires
 - `checkcpp-reports` : contient les rapports de cppcheck (details dans le fichier LOG et les erreurs dans le fichier XML)
 - `pipelines` : contient les scripts pour lancer les pipelines de manière séparées
+
+> Manque guide de dépannage.
